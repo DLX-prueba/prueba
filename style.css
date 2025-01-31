@@ -1,0 +1,72 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    text-align: center;
+    padding: 20px;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.cuento {
+    font-size: 20px;
+    line-height: 1.5;
+    margin: 20px 0;
+    padding: 10px;
+    background: #e8f5e9;
+    border: 1px solid #c8e6c9;
+    border-radius: 8px;
+}
+
+.imagen-ayuda, .avatar {
+    width: 150px;
+    height: auto;
+    margin: 20px auto;
+}
+
+.avatars img {
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    border-radius: 50%;
+}
+
+.avatars img.selected {
+    border-color: #0073e6;
+}
+
+.boton-leer, #botonContinuar {
+    padding: 10px 20px;
+    background-color: #0073e6;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.boton-leer:hover, #botonContinuar:hover {
+    background-color: #005bb5;
+}
+
+.resultado {
+    font-weight: bold;
+    color: green;
+    display: none;
+    margin-top: 20px;
+}
+
+.puerta {
+    width: 150px;
+    height: auto;
+    cursor: pointer;
+}
