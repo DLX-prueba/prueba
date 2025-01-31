@@ -6,12 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (window.location.pathname.includes('index.html')) {
         configurarIntro();
-    } else if (window.location.pathname.includes('room.html')) {
-        mostrarHabitacion();
-    } else if (window.location.pathname.includes('game.html')) {
-        iniciarJuego();
-    } else {
-        console.log('No se detectó una página válida para la configuración.');
     }
 });
 
@@ -20,9 +14,7 @@ function configurarIntro() {
 
     // Selección de avatares
     const avatarOpciones = document.querySelectorAll('.avatar-opcion');
-    if (avatarOpciones.length === 0) {
-        console.error('No se encontraron avatares en la página.');
-    }
+    const mensajeError = document.getElementById('mensajeError');
 
     avatarOpciones.forEach(avatar => {
         avatar.addEventListener('click', () => {
@@ -35,57 +27,33 @@ function configurarIntro() {
             // Guardar el avatar seleccionado
             avatarSeleccionado = avatar.getAttribute('data-avatar');
             console.log('Avatar seleccionado:', avatarSeleccionado);
+
+            // Ocultar mensaje de error si estaba visible
+            mensajeError.classList.add('oculto');
         });
     });
 
     // Configuración del botón "Continuar"
     const botonContinuar = document.getElementById('botonContinuar');
-    if (!botonContinuar) {
-        console.error('No se encontró el botón Continuar.');
-    } else {
-        botonContinuar.addEventListener('click', () => {
-            console.log('Botón Continuar presionado.');
+    botonContinuar.addEventListener('click', () => {
+        console.log('Botón Continuar presionado.');
 
-            // Obtener el nombre ingresado
-            nombreUsuario = document.getElementById('nombreUsuarioInput').value;
-            console.log('Nombre ingresado:', nombreUsuario);
+        // Obtener el nombre ingresado
+        nombreUsuario = document.getElementById('nombreUsuarioInput').value;
+        console.log('Nombre ingresado:', nombreUsuario);
 
-            if (nombreUsuario && avatarSeleccionado) {
-                console.log('Redirigiendo a la habitación...');
-                localStorage.setItem('nombreUsuario', nombreUsuario);
-                localStorage.setItem('avatarSeleccionado', avatarSeleccionado);
-                window.location.href = 'room.html';
-            } else {
-                alert('Por favor, ingresá tu nombre y seleccioná un avatar.');
-            }
-        });
-    }
-}
-
-function mostrarHabitacion() {
-    console.log('Configurando la habitación del usuario...');
-
-    nombreUsuario = localStorage.getItem('nombreUsuario');
-    avatarSeleccionado = localStorage.getItem('avatarSeleccionado');
-
-    if (!nombreUsuario || !avatarSeleccionado) {
-        console.error('No se encontraron datos del usuario en localStorage.');
-        return;
-    }
-
-    document.getElementById('nombreUsuario').innerText = nombreUsuario;
-    document.getElementById('avatarSeleccionado').src = avatarSeleccionado;
-}
-
-function iniciarJuego() {
-    console.log('Iniciando el juego...');
-
-    nombreUsuario = localStorage.getItem('nombreUsuario');
-    if (nombreUsuario) {
-        document.getElementById('nombreUsuario').innerText = `👤 ${nombreUsuario}`;
-        console.log('Juego iniciado para:', nombreUsuario);
-    } else {
-        console.error('No se encontró el nombre del usuario en localStorage.');
-    }
+        // Validar los datos antes de redirigir
+        if (nombreUsuario && avatarSeleccionado) {
+            console.log('Redirigiendo a la habitación...');
+            localStorage.setItem('nombreUsuario', nombreUsuario);
+            localStorage.setItem('avatarSeleccionado', avatarSeleccionado);
+            window.location.href = 'room.html';
+        } else {
+            // Mostrar mensaje de error
+            mensajeError.textContent = 'Es necesario completar los datos para continuar.';
+            mensajeError.classList.remove('oculto');
+            console.error('Faltan datos: nombre o avatar no seleccionado.');
+        }
+    });
 }
 
