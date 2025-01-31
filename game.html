@@ -11,18 +11,23 @@
     <div class="container">
         <h1>Detective de Cuentos Perdidos 🕵️‍♂️</h1>
 
-        <!-- Mostrar ayuda visual -->
-        <button id="botonAyudaVisual">👁️‍🗨️ Ayuda visual</button>
+        <!-- Mostrar nombre y avatar -->
+        <p id="nombreUsuario"></p>
+        <img id="avatarSeleccionado" src="avatar1.png" alt="Avatar del usuario" class="avatar">
 
-        <!-- Mostrar nombre y avatar del usuario -->
-        <div>
-            <p id="nombreUsuario">👤 Maxi</p>
-            <img id="avatarSeleccionado" src="avatar1.png" alt="Avatar del usuario" class="avatar">
+        <!-- Cuento con errores -->
+        <div id="cuentoContainer">
+            <p id="cuentoTexto"></p>
         </div>
 
-        <!-- Botón para leer en voz alta -->
         <button id="botonLeer">Leer en voz alta</button>
 
+        <!-- Mensaje cuando el jugador termina -->
+        <div id="mensajeJuegoCompletado" class="oculto">
+            <h2>¡Felicidades, has completado el juego!</h2>
+        </div>
+
+        <button id="botonContinuar">Continuar al siguiente nivel</button>
     </div>
 
     <script src="script.js"></script>
