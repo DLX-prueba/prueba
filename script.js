@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('Documento cargado correctamente.');
+    console.log('Documento cargado correctamente en game.html.');
 
     // Recuperar nombre y avatar desde localStorage
     const nombreUsuario = localStorage.getItem('nombreUsuario');
@@ -7,13 +7,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Verificar que los datos existan
     if (nombreUsuario && avatarSeleccionado) {
-        // Mostrar el nombre y avatar en la página
         document.getElementById('nombreUsuario').innerText = nombreUsuario;
         document.getElementById('avatarSeleccionado').src = avatarSeleccionado;
     } else {
         console.error('No se encontraron datos en localStorage.');
-        // Redirigir a la página de inicio si no hay datos
-        window.location.href = 'index.html';
+        window.location.href = 'index.html';  // Redirige si no hay datos
     }
 
     // Cuento y errores
@@ -23,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
         nivel: 1
     };
 
-    // Mostrar el cuento en la página
+    // Mostrar el cuento con los errores en la página
     document.getElementById('cuentoTexto').innerHTML = cuento.texto;
 
     // Botón para corregir los errores
@@ -31,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
         corregirErrores(cuento);
     });
 
-    // Función para corregir los errores
+    // Función para corregir los errores en el cuento
     function corregirErrores(cuento) {
         for (let errorId in cuento.correcciones) {
             let error = document.getElementById(errorId);
@@ -39,11 +37,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 error.innerHTML = cuento.correcciones[errorId];
             }
         }
-        // Mostrar mensaje de éxito al corregir todos los errores
+        // Mostrar mensaje de éxito
         document.getElementById('mensajeJuegoCompletado').classList.remove('oculto');
     }
 
-    // Función para leer el cuento en voz alta
+    // Leer en voz alta
     document.getElementById('botonLeer').addEventListener('click', () => {
         let texto = document.getElementById('cuentoTexto').innerText;
         let speech = new SpeechSynthesisUtterance(texto);
@@ -52,3 +50,4 @@ document.addEventListener('DOMContentLoaded', () => {
         window.speechSynthesis.speak(speech);
     });
 });
+
