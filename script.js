@@ -12,10 +12,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Cambiar tamaño de fuente
     document.getElementById('agrandarTexto').addEventListener('click', () => {
-        document.body.style.fontSize = '1.2em';  // Aumenta el tamaño del texto
+        document.body.style.fontSize = '1.5em';  // Aumenta el tamaño del texto
     });
 
     document.getElementById('achicarTexto').addEventListener('click', () => {
         document.body.style.fontSize = '1em';  // Restaura el tamaño normal
+    });
+
+    // Selección de avatar con efecto visual
+    const avatarOpciones = document.querySelectorAll('.avatar-opcion');
+    avatarOpciones.forEach(avatar => {
+        avatar.addEventListener('click', () => {
+            avatarOpciones.forEach(a => a.classList.remove('selected'));  // Resetear selección
+            avatar.classList.add('selected');  // Agregar clase 'selected'
+        });
+    });
+
+    // Botón "Continuar"
+    document.getElementById('botonContinuar').addEventListener('click', () => {
+        const nombreUsuario = document.getElementById('nombreUsuarioInput').value;
+        let avatarSeleccionado = document.querySelector('.avatar-opcion.selected');
+        
+        if (nombreUsuario && avatarSeleccionado) {
+            localStorage.setItem('nombreUsuario', nombreUsuario);
+            localStorage.setItem('avatarSeleccionado', avatarSeleccionado.getAttribute('data-avatar'));
+            window.location.href = 'room.html';
+        } else {
+            alert('Por favor, completa todos los campos.');
+        }
     });
 });
