@@ -1,102 +1,48 @@
-/* Estilos generales */
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
-    text-align: center;
-    padding: 20px;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('Documento cargado correctamente.');
 
-h2 {
-    font-size: 2em;
-    margin-bottom: 20px;
-}
+    // Leer texto en voz alta
+    document.getElementById('leerTexto').addEventListener('click', () => {
+        const texto = document.body.innerText;  // Leer todo el texto de la página
+        const speech = new SpeechSynthesisUtterance(texto);
+        speech.lang = "es-ES";
+        speech.rate = 1; // Puedes ajustar la velocidad de lectura
+        window.speechSynthesis.speak(speech);
+    });
 
-/* Contenedor principal */
-.contenido {
-    background-color: #ffffff;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    padding: 30px;
-    border-radius: 15px;
-    width: 80%;
-    max-width: 600px;
-    margin-bottom: 20px;
-}
+    // Cambiar tamaño de fuente
+    document.getElementById('agrandarTexto').addEventListener('click', () => {
+        document.body.style.fontSize = '1.5em';  // Aumenta el tamaño del texto
+    });
 
-/* Botones */
-button {
-    padding: 15px 30px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-top: 20px;
-    transition: all 0.3s ease;
-}
+    document.getElementById('achicarTexto').addEventListener('click', () => {
+        document.body.style.fontSize = '1em';  // Restaura el tamaño normal
+    });
 
-button:hover {
-    background-color: #45a049;
-    transform: scale(1.05);
-}
+    // Selección de avatar con efecto visual
+    const avatarOpciones = document.querySelectorAll('.avatar-opcion');
+    avatarOpciones.forEach(avatar => {
+        avatar.addEventListener('click', () => {
+            avatarOpciones.forEach(a => a.classList.remove('selected'));  // Resetear selección
+            avatar.classList.add('selected');  // Agregar clase 'selected'
+        });
+    });
 
-button:focus {
-    outline: none;
-}
+    // Botón "Continuar"
+    document.getElementById('botonContinuar').addEventListener('click', () => {
+        const nombreUsuario = document.getElementById('nombreUsuarioInput').value.trim();
+        let avatarSeleccionado = document.querySelector('.avatar-opcion.selected');
+        
+        // Verificar si ambos campos están completos
+        if (!nombreUsuario || !avatarSeleccionado) {
+            document.getElementById('errorMensaje').style.display = 'block';  // Mostrar mensaje de error
+        } else {
+            // Guardar los datos en localStorage
+            localStorage.setItem('nombreUsuario', nombreUsuario);
+            localStorage.setItem('avatarSeleccionado', avatarSeleccionado.getAttribute('data-avatar'));
 
-button:disabled {
-    background-color: #d3d3d3;
-    cursor: not-allowed;
-}
-
-/* Avatar */
-.avatar-opcion {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    margin: 20px;
-    cursor: pointer;
-    transition: transform 0.3s ease, border-color 0.3s ease;
-}
-
-.avatar-opcion.selected {
-    border: 4px solid #4CAF50;
-    transform: scale(1.1);
-}
-
-/* Opciones de accesibilidad */
-.accessibility button {
-    margin: 10px;
-    padding: 12px 25px;
-    background-color: #009688;
-    border: none;
-    color: white;
-    font-size: 16px;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
-.accessibility button:hover {
-    background-color: #00796b;
-}
-
-footer {
-    margin-top: 40px;
-}
-
-/* Mejoras para imágenes */
-img {
-    max-width: 100%;
-    height: auto;
-}
-
-/* Logo */
-.logo {
-    width: 150px;
-    margin: 20px;
-}
+            // Redirigir a la página de la habitación
+            window.location.href = 'room.html';
+        }
+    });
+});
