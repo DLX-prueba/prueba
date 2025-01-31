@@ -16,6 +16,10 @@ function configurarIntro() {
     const avatarOpciones = document.querySelectorAll('.avatar-opcion');
     const mensajeError = document.getElementById('mensajeError');
 
+    if (avatarOpciones.length === 0) {
+        console.error('No se encontraron avatares en la página.');
+    }
+
     avatarOpciones.forEach(avatar => {
         avatar.addEventListener('click', () => {
             console.log('Avatar clickeado:', avatar.getAttribute('data-avatar'));
@@ -35,6 +39,11 @@ function configurarIntro() {
 
     // Configuración del botón "Continuar"
     const botonContinuar = document.getElementById('botonContinuar');
+    if (!botonContinuar) {
+        console.error('No se encontró el botón Continuar.');
+        return;
+    }
+
     botonContinuar.addEventListener('click', () => {
         console.log('Botón Continuar presionado.');
 
