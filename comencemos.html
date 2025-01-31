@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DLX - Aprendizaje y Diversión</title>
+    <title>¡Comencemos!</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -20,23 +20,19 @@
         </nav>
     </header>
 
-    <!-- Video introductorio -->
-    <div class="video-container">
-        <video controls>
-            <source src="video_intro.mp4" type="video/mp4">
-            Tu navegador no soporta este video.
-        </video>
-    </div>
-
-    <!-- Opciones de accesibilidad -->
-    <div class="accessibility">
-        <button id="leerTexto">Leer en voz alta</button>
-        <button id="agrandarTexto">Agrandar texto</button>
-        <button id="achicarTexto">Achicar texto</button>
+    <div class="contenido">
+        <h2>¡Bienvenido!</h2>
+        <p>Selecciona tu nombre y avatar para comenzar.</p>
+        <input type="text" id="nombreUsuarioInput" placeholder="Ingresa tu nombre">
+        <div class="avatars">
+            <img src="avatar1.png" class="avatar-opcion" data-avatar="avatar1.png" alt="Avatar 1">
+            <img src="avatar2.png" class="avatar-opcion" data-avatar="avatar2.png" alt="Avatar 2">
+            <img src="avatar3.png" class="avatar-opcion" data-avatar="avatar3.png" alt="Avatar 3">
+        </div>
+        <button id="botonContinuar">Continuar</button>
     </div>
 
     <footer>
-        <p>&copy; 2025 DLX. Todos los derechos reservados.</p>
         <a href="index.html" class="volver">Volver al inicio</a>
     </footer>
 
