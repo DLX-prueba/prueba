@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -11,13 +10,18 @@
 
     <div class="container">
         <h1>Bienvenido al Mundo de los Cuentos</h1>
+
+        <!-- Mensaje de error -->
+        <div id="mensajeError" class="mensaje-error oculto">Es necesario completar los datos para continuar.</div>
+
+        <!-- Formulario -->
         <input type="text" id="nombreUsuarioInput" placeholder="Ingresá tu nombre">
         
         <h3>Seleccioná un avatar:</h3>
         <div class="avatars">
-            <img src="avatar1.png" class="avatar-opcion" data-avatar="avatar1.png">
-            <img src="avatar2.png" class="avatar-opcion" data-avatar="avatar2.png">
-            <img src="avatar3.png" class="avatar-opcion" data-avatar="avatar3.png">
+            <img src="avatar1.png" class="avatar-opcion" data-avatar="avatar1.png" alt="Avatar 1">
+            <img src="avatar2.png" class="avatar-opcion" data-avatar="avatar2.png" alt="Avatar 2">
+            <img src="avatar3.png" class="avatar-opcion" data-avatar="avatar3.png" alt="Avatar 3">
         </div>
 
         <button id="botonContinuar">Continuar</button>
@@ -26,3 +30,4 @@
     <script src="script.js"></script>
 </body>
 </html>
+
