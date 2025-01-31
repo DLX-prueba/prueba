@@ -33,16 +33,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const nombreUsuario = document.getElementById('nombreUsuarioInput').value.trim();
         let avatarSeleccionado = document.querySelector('.avatar-opcion.selected');
         
-        if (nombreUsuario && avatarSeleccionado) {
+        // Verificar si ambos campos están completos
+        if (!nombreUsuario || !avatarSeleccionado) {
+            document.getElementById('errorMensaje').style.display = 'block';  // Mostrar mensaje de error
+        } else {
             // Guardar los datos en localStorage
             localStorage.setItem('nombreUsuario', nombreUsuario);
             localStorage.setItem('avatarSeleccionado', avatarSeleccionado.getAttribute('data-avatar'));
 
             // Redirigir a la página de la habitación
             window.location.href = 'room.html';
-        } else {
-            alert('Por favor, completa todos los campos.');
         }
     });
 });
+
 
