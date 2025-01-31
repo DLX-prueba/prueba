@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -11,12 +10,19 @@
 
     <div class="container">
         <h1>Detective de Cuentos Perdidos 🕵️‍♂️</h1>
-        <div id="textoCuento" class="cuento"></div>
-        <img id="imagenAyuda" src="" alt="Ayuda visual" class="imagen-ayuda">
-        <div id="nombreUsuario" class="usuario"></div>
-        <img id="avatarUsuario" src="" alt="Avatar del usuario" class="avatar">
-        <button id="botonLeer" class="boton-leer">Leer en voz alta</button>
-        <div id="mensajeResultado" class="resultado"></div>
+
+        <!-- Mostrar ayuda visual -->
+        <button id="botonAyudaVisual">👁️‍🗨️ Ayuda visual</button>
+
+        <!-- Mostrar nombre y avatar del usuario -->
+        <div>
+            <p id="nombreUsuario">👤 Maxi</p>
+            <img id="avatarSeleccionado" src="avatar1.png" alt="Avatar del usuario" class="avatar">
+        </div>
+
+        <!-- Botón para leer en voz alta -->
+        <button id="botonLeer">Leer en voz alta</button>
+
     </div>
 
     <script src="script.js"></script>
