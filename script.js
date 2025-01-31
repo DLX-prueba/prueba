@@ -4,13 +4,14 @@ let avatarSeleccionado = '';
 document.addEventListener('DOMContentLoaded', () => {
     console.log('Documento cargado correctamente.');
 
-    // Detectar la página en la que estamos
     if (window.location.pathname.includes('index.html')) {
         configurarIntro();
     } else if (window.location.pathname.includes('room.html')) {
         mostrarHabitacion();
     } else if (window.location.pathname.includes('game.html')) {
         iniciarJuego();
+    } else {
+        console.log('No se detectó una página válida para la configuración.');
     }
 });
 
@@ -19,9 +20,15 @@ function configurarIntro() {
 
     // Selección de avatares
     const avatarOpciones = document.querySelectorAll('.avatar-opcion');
+    if (avatarOpciones.length === 0) {
+        console.error('No se encontraron avatares en la página.');
+    }
+
     avatarOpciones.forEach(avatar => {
         avatar.addEventListener('click', () => {
-            // Remover selección previa de todos los avatares
+            console.log('Avatar clickeado:', avatar.getAttribute('data-avatar'));
+
+            // Remover selección de otros avatares
             avatarOpciones.forEach(a => a.classList.remove('selected'));
             avatar.classList.add('selected');
 
@@ -31,36 +38,41 @@ function configurarIntro() {
         });
     });
 
-    // Evento de clic en el botón "Continuar"
-    document.getElementById('botonContinuar').addEventListener('click', () => {
-        console.log('Botón Continuar presionado');
+    // Configuración del botón "Continuar"
+    const botonContinuar = document.getElementById('botonContinuar');
+    if (!botonContinuar) {
+        console.error('No se encontró el botón Continuar.');
+    } else {
+        botonContinuar.addEventListener('click', () => {
+            console.log('Botón Continuar presionado.');
 
-        // Obtener el nombre ingresado
-        nombreUsuario = document.getElementById('nombreUsuarioInput').value;
-        console.log('Nombre ingresado:', nombreUsuario);
+            // Obtener el nombre ingresado
+            nombreUsuario = document.getElementById('nombreUsuarioInput').value;
+            console.log('Nombre ingresado:', nombreUsuario);
 
-        if (nombreUsuario && avatarSeleccionado) {
-            console.log('Nombre y avatar completos. Redirigiendo a la habitación...');
-            localStorage.setItem('nombreUsuario', nombreUsuario);
-            localStorage.setItem('avatarSeleccionado', avatarSeleccionado);
-            window.location.href = 'room.html';
-        } else {
-            alert('Por favor, ingresá tu nombre y seleccioná un avatar.');
-        }
-    });
+            if (nombreUsuario && avatarSeleccionado) {
+                console.log('Redirigiendo a la habitación...');
+                localStorage.setItem('nombreUsuario', nombreUsuario);
+                localStorage.setItem('avatarSeleccionado', avatarSeleccionado);
+                window.location.href = 'room.html';
+            } else {
+                alert('Por favor, ingresá tu nombre y seleccioná un avatar.');
+            }
+        });
+    }
 }
 
 function mostrarHabitacion() {
     console.log('Configurando la habitación del usuario...');
 
-    // Recuperar nombre y avatar desde el almacenamiento local
     nombreUsuario = localStorage.getItem('nombreUsuario');
     avatarSeleccionado = localStorage.getItem('avatarSeleccionado');
 
-    console.log('Nombre recuperado:', nombreUsuario);
-    console.log('Avatar recuperado:', avatarSeleccionado);
+    if (!nombreUsuario || !avatarSeleccionado) {
+        console.error('No se encontraron datos del usuario en localStorage.');
+        return;
+    }
 
-    // Mostrar los datos en la página
     document.getElementById('nombreUsuario').innerText = nombreUsuario;
     document.getElementById('avatarSeleccionado').src = avatarSeleccionado;
 }
@@ -68,11 +80,12 @@ function mostrarHabitacion() {
 function iniciarJuego() {
     console.log('Iniciando el juego...');
 
-    // Recuperar el nombre del usuario
     nombreUsuario = localStorage.getItem('nombreUsuario');
-    document.getElementById('nombreUsuario').innerText = `👤 ${nombreUsuario}`;
-
-    // Lógica del juego aquí (simplificada)
-    console.log('Juego iniciado para:', nombreUsuario);
+    if (nombreUsuario) {
+        document.getElementById('nombreUsuario').innerText = `👤 ${nombreUsuario}`;
+        console.log('Juego iniciado para:', nombreUsuario);
+    } else {
+        console.error('No se encontró el nombre del usuario en localStorage.');
+    }
 }
 
